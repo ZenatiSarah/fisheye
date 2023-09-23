@@ -27,24 +27,27 @@ dataMediaFilter.forEach(element => {
     const nameSplit = name.split(" ")
 
     const image = `/assets/photographers/${nameSplit[0]}/${element?.image}`
-    console.log("IMAGE ", image)
+    const video = `/assets/photographers/${nameSplit[0]}/${element?.video}`
 
-    const media = image.split('.').pop()
+    const mediaImage = image.split('.').pop();
+    const mediaVideo = video.split('.').pop();
 
     let mediaPhotographer;
-    if (media === "mp4") {
+
+    if (mediaVideo === "mp4") {
+
         //balise img
         mediaPhotographer = `
         <article>
                 <figure>
-                    <video src="${image}"/>
+                    <video src="${video}"/>
                     <figcaption>${element.title}</figcaption>
                     </figure>
         </article>
         `
-    }
-    //balise video
-    mediaPhotographer = `
+    } else if (mediaImage === 'jpg')
+        //balise video
+        mediaPhotographer = `
         <article>
                 <figure>
                     <img src="${image}"/>
