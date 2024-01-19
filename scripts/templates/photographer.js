@@ -1,5 +1,7 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
 
+//------------------------- INFO Photographe + images/vidéos------------------------------
+
 //Récupération de l'id de ma page
 const url_id = window.location.search;
 const idUnique = url_id.slice(1);
@@ -18,7 +20,7 @@ const dataMedia = await apiMedia.getMedia();
 const dataMediaFilter = dataMedia.filter(function (element) {
     return element.photographerId == idUnique
 });
-//------------------------------------------------------------------------------------
+//-------------------- Affichage photos et vidéos ----------------------------------------------------------------
 dataMediaFilter.forEach(element => {
     const divPhotographerMedia = document.querySelector('.photographer_section');
 
@@ -31,6 +33,7 @@ dataMediaFilter.forEach(element => {
 
     const mediaImage = image.split('.').pop();
     const mediaVideo = video.split('.').pop();
+
 
     let mediaPhotographer;
 
