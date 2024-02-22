@@ -1,4 +1,5 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
+import { displayModal } from '../modules/modal.js' // lancement de la modale //
 
 //------------------------- INFO Photographe + images/vidéos------------------------------
 
@@ -21,54 +22,43 @@ const dataMediaFilter = dataMedia.filter(function (element) {
     return element.photographerId == idUnique
 });
 //-------------------- Affichage photos et vidéos ----------------------------------------------------------------
+
+const divPhotographerMedia = document.querySelector('.photographer_section');
+let mediaPhotographer = '';
+console.log(dataMediaFilter)
 dataMediaFilter.forEach(element => {
-    const divPhotographerMedia = document.querySelector('.photographer_section');
 
-    //Name photographer 
     let name = dataUnique[0].name;
-    const nameSplit = name.split(" ")
+    const mediaElement = element.image
+        ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
+        : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
+    //====To do===
+    const mediaCard = `
+    <article>
+            <figure>
+                ${mediaElement}
+                <figcaption>${element.title}</figcaption>
+                </figure>
+    </article>
+    `
 
-    const image = `/assets/photographers/${nameSplit[0]}/${element?.image}`
-    const video = `/assets/photographers/${nameSplit[0]}/${element?.video}`
 
-    const mediaImage = image.split('.').pop();
-    const mediaVideo = video.split('.').pop();
+    mediaPhotographer += mediaCard;
 
 
-    let mediaPhotographer;
-
-    if (mediaVideo === "mp4") {
-
-        //balise img
-        mediaPhotographer = `
-        <article>
-                <figure>
-                    <video src="${video}"/>
-                    <figcaption>${element.title}</figcaption>
-                    </figure>
-        </article>
-        `
-    } else if (mediaImage === 'jpg')
-        //balise video
-        mediaPhotographer = `
-        <article>
-                <figure>
-                    <img src="${image}"/>
-                    <figcaption>${element.title}</figcaption>
-                    </figure>
-        </article>
-        `
-
-    //Template Media
-
-    divPhotographerMedia.innerHTML = mediaPhotographer;
 });
+
+
+//Template Media
+
+divPhotographerMedia.innerHTML = mediaPhotographer;
+
 
 //Récupération de ma class html
 const divPhotographer = document.querySelector('.photograph-header');
 
 //Chemin vers l'image du photographe
-const picture = `/assets/photographers/${dataUnique[0].portrait}`
+const picture = `../../assets/photographers/id/${dataUnique[0].portrait}`
 
 //Template Photographers
 const monPhotographe = `
@@ -78,7 +68,7 @@ const monPhotographe = `
         <p class="city_country">${dataUnique[0].city}, ${dataUnique[0].country}</p>
         <p>${dataUnique[0].tagline}</p>
     </div>
-    <button class="contact_button" onclick="displayModal()">
+    <button class="contact_button" >
           Contactez-moi
     </button>
     <img src="${picture}" alt="portrait du photographe" />
@@ -87,4 +77,7 @@ const monPhotographe = `
 divPhotographer.innerHTML = monPhotographe;
 
 
-//return divPhotographer
+//Affichage de la modal : 
+
+const contact = document.querySelector('.contact_button')
+contact.addEventListener('click', () => displayModal())

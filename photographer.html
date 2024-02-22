@@ -12,12 +12,12 @@
     />
     <title>Fisheye - photographe</title>
   </head>
-  <body>
+  <body class="bodyPhotographer">
     <header>
       <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
       
     </header>
-    <main id="main">
+    <main id="mainPhotographer">
       <div class="photograph-header"></div>
       <div class="filter">
         <label>Trier par </label>
@@ -33,23 +33,39 @@
       </div>
       
     </main>
-    <div id="contact_modal">
+
+    <!-- Formulaire -->
+    <div id="background_modal">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2>Contactez-moi </h2>
+          <img src="assets/icons/close.svg"  class="close closeModal" id="closeModal"/>
         </header>
 
-        <form>
+        <form id="form">
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="firstname">Prénom</label>
+            <input type="text" id="firstname" required/>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <div>
+            <label for="name">Nom</label>
+            <input type="text" id="name" required/>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="text" id="email" required/>
+          </div>
+          <div>
+            <label>Votre message</label>
+            <textarea id="message" name="message" rows="10" cols="55" required></textarea>
+          </div>
+          <input value="Envoyer"  type="submit" class="contact_button">
         </form>
       </div>
-    </div> 
+    </div>
+
    <script src="/scripts/templates/photographer.js" type="module"></script>
+   <script src="/scripts/modules/modal.js" type="module"></script>
 
 
   </body>

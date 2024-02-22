@@ -6,14 +6,13 @@ export default class Home {
     photographerCard() {
         const $wrapper = document.createElement("div");
         $wrapper.setAttribute("id", `${this._data.id}`);
-        $wrapper.classList.add('photographe_portrait')
-        const picture = `${this._data.portrait}`;
+        $wrapper.classList.add('photographe_portrait');
 
 
         const cards = `
             <article class="portrait" >
                 <figure>
-                    <img src="${picture}" alt="Portrait du photographe"/>
+                    <img src="${this._data.portrait}" alt="Portrait du ${this._data.name}"/>
                     <figcaption>${this._data.name}</figcaption>
                 </figure>
                  
