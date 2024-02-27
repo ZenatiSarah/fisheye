@@ -85,3 +85,13 @@ form input {
 #background_modal{
     display: none;
 }
+
+.like{
+    width: 20px !important;
+    height: 20px !important;
+}
+.title-like{
+    display: flex;
+    justify-content: space-between;
+    color: firebrick;
+}

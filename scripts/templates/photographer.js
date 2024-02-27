@@ -21,6 +21,7 @@ const dataMedia = await apiMedia.getMedia();
 const dataMediaFilter = dataMedia.filter(function (element) {
     return element.photographerId == idUnique
 });
+console.log(dataMedia)
 //-------------------- Affichage photos et vidéos ----------------------------------------------------------------
 
 const divPhotographerMedia = document.querySelector('.photographer_section');
@@ -35,10 +36,11 @@ dataMediaFilter.forEach(element => {
     //====To do===
     const mediaCard = `
     <article>
-            <figure>
+            <div>
                 ${mediaElement}
-                <figcaption>${element.title}</figcaption>
-                </figure>
+                <p class="title-like">${element.title} <img class="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/></p>
+                
+            </div>
     </article>
     `
 
@@ -81,3 +83,11 @@ divPhotographer.innerHTML = monPhotographe;
 
 const contact = document.querySelector('.contact_button')
 contact.addEventListener('click', () => displayModal())
+
+// ----------------------------- Filtre des médias -------------------------------------------------------
+
+const likes = dataMediaFilter.filter(function (element) {
+    return element.likes
+})
+
+console.log(likes)
