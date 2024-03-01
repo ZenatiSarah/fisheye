@@ -42,12 +42,6 @@ function closeModal() {
     modalBg.style.display = 'none'
 }
 
-/*
-//Récupération des valeurs 
-submit.addEventListener('click', () => {
-    
-})
-*/
 
 
 //Regex

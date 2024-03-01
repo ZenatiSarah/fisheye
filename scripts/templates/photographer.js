@@ -1,5 +1,6 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
-import { displayModal } from '../modules/modal.js' // lancement de la modale //
+import { displayModal } from '../outils/modal.js' // lancement de la modale //
+import filterMedias from '../outils/filtre.js'
 
 //------------------------- INFO Photographe + images/vidéos------------------------------
 
@@ -24,17 +25,19 @@ let dataMediaFilter = dataMedia.filter(function (element) {
 console.log(dataMediaFilter)
 //-------------------- Affichage photos et vidéos ----------------------------------------------------------------
 
-const divPhotographerMedia = document.querySelector('.photographer_section');
-let mediaPhotographer = '';
-console.log(dataMediaFilter)
-dataMediaFilter.forEach(element => {
 
-    let name = dataUnique[0].name;
-    const mediaElement = element.image
-        ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
-        : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
+const displayMedia = (medias) => {
+    const divPhotographerMedia = document.querySelector('.photographer_section');
+    let mediaPhotographer = '';
 
-    const mediaCard = `
+    medias.forEach(element => {
+
+        let name = dataUnique[0].name;
+        const mediaElement = element.image
+            ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
+            : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
+
+        const mediaCard = `
     <article>
             <div>
                 ${mediaElement}
@@ -45,15 +48,18 @@ dataMediaFilter.forEach(element => {
     `
 
 
-    mediaPhotographer += mediaCard;
+        mediaPhotographer += mediaCard;
 
 
-});
+    });
+    divPhotographerMedia.innerHTML = mediaPhotographer;
+}
+
 
 
 //Template Media
 
-divPhotographerMedia.innerHTML = mediaPhotographer;
+
 
 
 //Récupération de ma class html
@@ -81,30 +87,17 @@ divPhotographer.innerHTML = monPhotographe;
 
 //Affichage de la modal : 
 
-const contact = document.querySelector('.contact_button')
-contact.addEventListener('click', () => displayModal())
+const contact = document.querySelector('.contact_button');
+contact.addEventListener('click', () => displayModal());
 
-// ----------------------------- Filtre des médias -------------------------------------------------------
-
+//--------------------------------------------------------------------
+displayMedia(dataMediaFilter)
 const filter = document.getElementById("filter_select");
+
 
 filter.addEventListener("click", function (event) {
     event.preventDefault();
 
-    if (filter.value === 'popularite') {
-        dataMediaFilter.sort(function (a, b) {
-            return b.likes - a.likes
-        });
-    } else if (filter.value == 'date') {
-        dataMediaFilter.sort(function (a, b) {
-            return new Date(b.date) - new Date(a.date)
-        });
-    } else if (filter.value == 'titre') {
-        dataMediaFilter.sort((a, b) => {
-            return a.title.localeCompare(b.title)
-        })
-    }
-
-
+    filterMedias(filter.value, dataMediaFilter);
+    displayMedia(dataMediaFilter)
 });
-
