@@ -1,14 +1,19 @@
 #contact_modal {
     display: none;
 }
-
+main{
+    max-width: 85rem;
+    margin: 0px auto;
+}
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+}
+.filter, .photograph-header{
     padding: 1.2rem;
 }
 
@@ -94,4 +99,8 @@ form input {
     display: flex;
     justify-content: space-between;
     color: firebrick;
+}
+
+.portrait img{
+    border-radius: 100%;
 }

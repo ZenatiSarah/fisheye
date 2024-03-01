@@ -18,10 +18,10 @@ const dataUnique = data.filter(function (element) {
 const apiMedia = new getMediaApi('../data/photographers.json');
 const dataMedia = await apiMedia.getMedia();
 
-const dataMediaFilter = dataMedia.filter(function (element) {
+let dataMediaFilter = dataMedia.filter(function (element) {
     return element.photographerId == idUnique
 });
-console.log(dataMedia)
+console.log(dataMediaFilter)
 //-------------------- Affichage photos et vidéos ----------------------------------------------------------------
 
 const divPhotographerMedia = document.querySelector('.photographer_section');
@@ -33,12 +33,12 @@ dataMediaFilter.forEach(element => {
     const mediaElement = element.image
         ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
         : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
-    //====To do===
+
     const mediaCard = `
     <article>
             <div>
                 ${mediaElement}
-                <p class="title-like">${element.title} <img class="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/></p>
+                <p class="title-like">${element.title} <span>${element.likes}<img class="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/></span></p>
                 
             </div>
     </article>
@@ -86,8 +86,25 @@ contact.addEventListener('click', () => displayModal())
 
 // ----------------------------- Filtre des médias -------------------------------------------------------
 
-const likes = dataMediaFilter.filter(function (element) {
-    return element.likes
-})
+const filter = document.getElementById("filter_select");
 
-console.log(likes)
+filter.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    if (filter.value === 'popularite') {
+        dataMediaFilter.sort(function (a, b) {
+            return b.likes - a.likes
+        });
+    } else if (filter.value == 'date') {
+        dataMediaFilter.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date)
+        });
+    } else if (filter.value == 'titre') {
+        dataMediaFilter.sort((a, b) => {
+            return a.title.localeCompare(b.title)
+        })
+    }
+
+
+});
+
