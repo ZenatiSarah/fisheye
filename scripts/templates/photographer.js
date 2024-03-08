@@ -1,6 +1,6 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
-import { displayModal } from '../outils/modal.js' // lancement de la modale //
-import filterMedias from '../outils/filtre.js'
+import { displayModal } from '../utils/modal.js' // lancement de la modale //
+import filterMedias from '../utils/filtre.js'
 
 //------------------------- INFO Photographe + images/vidéos------------------------------
 
