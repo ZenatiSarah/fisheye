@@ -1,6 +1,7 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
+import displayTotalLikes from "../utils/like.js";
 
 //------------------------- INFO Photographe + images/vidéos------------------------------
 
@@ -39,11 +40,18 @@ const displayMedia = (medias) => {
 
         const mediaCard = `
     <article>
-            <div>
+            
                 ${mediaElement}
-                <p class="title-like">${element.title} <span>${element.likes}<img class="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/></span></p>
+                <div class="title-like">
+                <p class="title-like">${element.title} </p>
+                <span>${element.likes}</span>
+                    <button class='btn-like'>
+                    <img id="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/>
+                    </button>
+                </div>
                 
-            </div>
+                
+            
     </article>
     `
 
@@ -101,3 +109,5 @@ filter.addEventListener("click", function (event) {
     filterMedias(filter.value, dataMediaFilter);
     displayMedia(dataMediaFilter)
 });
+
+displayTotalLikes(dataMediaFilter);
