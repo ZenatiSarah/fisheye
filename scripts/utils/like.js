@@ -6,42 +6,35 @@
 
 
 const displayTotalLikes = (medias) => {
-    const itemLike = document.getElementById('like');
+
     const allBtnLike = document.querySelectorAll('.btn-like');
     //const likesElement = document.querySelector(".photographer_likes_count");
 
-    const updateTotalLikes = () => {
-        let initialValue = 0;
-        let totalLikes = medias.reduce((accumulator, medias) =>
-            accumulator + medias.likes, initialValue
-        );
-        console.log("total des likes : ", totalLikes)
-        //likesElement.textContent = `${totalLikes}`; afficher le total des likes sur le dom
-    }
-    updateTotalLikes();
 
-    allBtnLike.forEach(btnLike => {
+    let totalLikes = medias.reduce((accumulator, medias) =>
+        accumulator + medias.likes, 0);
+    console.log("total des likes : ", totalLikes)
+
+    allBtnLike.forEach((btnLike, index) => {
+
         let etatInital = false;
+        let itemLike = medias[index].likes;
         btnLike.addEventListener('click', () => {
-            /**
-             * récupérer les médias pour récupérer les likes
-             * Ajouter + 1 au nombre de like 
-             * Si btn a l'état liké = déliké et inversement
-             * 
-             * 
-             */
+            etatInital = !etatInital;
+            console.log(etatInital);
 
+            if (etatInital) {
 
-            etatInital = true;
-
-            if (etatInital == true) {
-                console.log("Btn liké !")
-
-
+                itemLike++;
+                console.log(itemLike)
+                totalLikes++;
+                console.log(totalLikes);
+            } else {
+                itemLike--;
+                console.log(itemLike)
+                totalLikes--;
+                console.log(totalLikes);
             }
-
-
-            updateTotalLikes();
         })
     })
 
