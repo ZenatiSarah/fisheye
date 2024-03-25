@@ -7,7 +7,7 @@ import displayTotalLikes from "../utils/like.js";
 const url_id = window.location.search;
 const idUnique = url_id.slice(1);
 
-//Api photographer
+//Mon photographe
 const api = new PhotographersApi('../data/photographers.json');
 const data = await api.getPhotographers();
 const dataPhotographer = data.filter(function (element) {
@@ -34,14 +34,22 @@ filter.addEventListener("click", function (event) {
     displayMedia(mediasPhotographer);
 });
 
-//Likes
-displayTotalLikes(mediasPhotographer);
+
+/**---------- totalLikes ------- */
+const divtotalLikes = document.getElementById('totalLikes');
+
+
+const likeAndPrice = `
+    <p> ${dataPhotographer[0].total} ${dataPhotographer[0].price}€/ jour</p> 
+    `
+divtotalLikes.innerHTML = likeAndPrice;
 
 //Template 
 const displayMedia = (medias) => {
     const divPhotographerMedia = document.querySelector('.photographer_section');
     const bioPhotographer = document.querySelector('.photograph-header');
     const picture = `../../assets/photographers/id/${dataPhotographer[0].portrait}`
+
     /**-----------HEADER---------- */
     const bio = `
         <div class="photographe_texte">
@@ -59,7 +67,8 @@ const displayMedia = (medias) => {
     /**--------------CARTS ------- */
     let mediaPhotographer = '';
 
-    medias.forEach(element => {
+    medias.forEach((element, index) => {
+        // console.log("index display media : ", index)
         let name = dataPhotographer[0].name;
         const mediaElement = element.image
             ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
@@ -80,5 +89,9 @@ const displayMedia = (medias) => {
         mediaPhotographer += mediaCard;
     });
     divPhotographerMedia.innerHTML = mediaPhotographer;
+
 }
 displayMedia(mediasPhotographer);
+
+//Likes
+displayTotalLikes(mediasPhotographer);
