@@ -104,7 +104,7 @@ form input {
 .portrait img{
     border-radius: 50%;
 }
-#totalLikes{
+#totalLikes, .price{
     bottom: 0;
     right: 0;
     position: fixed;

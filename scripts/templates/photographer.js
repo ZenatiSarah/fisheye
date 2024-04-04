@@ -2,6 +2,7 @@ import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
+import slides from "../utils/slide.js";
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
@@ -36,11 +37,13 @@ filter.addEventListener("click", function (event) {
 
 
 /**---------- totalLikes ------- */
-const divtotalLikes = document.getElementById('totalLikes');
 
+let photographerLikes = mediasPhotographer.reduce((accumulator, mediasPhotographer) =>
+    accumulator + mediasPhotographer.likes, 0);
+const divtotalLikes = document.getElementById('priceandlikes');
 
 const likeAndPrice = `
-    <p> ${dataPhotographer[0].total} ${dataPhotographer[0].price}€/ jour</p> 
+    <p><span id="totalLikes">${photographerLikes} </span> ${dataPhotographer[0].price}€/ jour</p> 
     `
 divtotalLikes.innerHTML = likeAndPrice;
 
@@ -79,7 +82,7 @@ const displayMedia = (medias) => {
                 ${mediaElement}
                 <div class="title-like">
                 <p class="title-like">${element.title} </p>
-                <span>${element.likes}</span>
+                <span id=${"like" + index}  > ${element.likes}</span>
                     <button class='btn-like'>
                     <img id="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/>
                     </button>
@@ -95,3 +98,6 @@ displayMedia(mediasPhotographer);
 
 //Likes
 displayTotalLikes(mediasPhotographer);
+
+//slides
+slides(mediasPhotographer)
