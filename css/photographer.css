@@ -104,3 +104,14 @@ form input {
 .portrait img{
     border-radius: 50%;
 }
+#totalLikes{
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    width: 11rem;
+    padding: 0.4rem;
+    background: #DB8876;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}

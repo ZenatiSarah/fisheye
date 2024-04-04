@@ -3,27 +3,33 @@ const displayTotalLikes = (medias) => {
     const allBtnLike = document.querySelectorAll('.btn-like');
     //const likesElement = document.querySelector(".photographer_likes_count");
 
-
     let totalLikes = medias.reduce((accumulator, medias) =>
         accumulator + medias.likes, 0);
 
     allBtnLike.forEach((btnLike, index) => {
-
         let etatInital = false;
         let itemLike = medias[index].likes;
+
         btnLike.addEventListener('click', () => {
             etatInital = !etatInital;
 
             if (etatInital) {
+                itemLike++
+                document.getElementById("like" + index).innerHTML = itemLike;
+                totalLikes++
+                document.getElementById("totalLikes").innerHTML = totalLikes;
 
-                itemLike++;
-                totalLikes++;
             } else {
-                itemLike--;
-                totalLikes--;
+                itemLike--
+                document.getElementById("like" + index).innerHTML = itemLike;
+                totalLikes--
+                document.getElementById("totalLikes").innerHTML = totalLikes;
+
             }
-        })
-    })
+
+        });
+
+    });
 
 }
 export default displayTotalLikes;

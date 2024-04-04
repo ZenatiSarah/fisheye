@@ -2,12 +2,13 @@ import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
+import slides from "../utils/slide.js";
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
 const idUnique = url_id.slice(1);
 
-//Api photographer
+//Mon photographe
 const api = new PhotographersApi('../data/photographers.json');
 const data = await api.getPhotographers();
 const dataPhotographer = data.filter(function (element) {
@@ -31,14 +32,24 @@ filter.addEventListener("click", function (event) {
     displayMedia(mediasPhotographer);
 });
 
-//Likes
-displayTotalLikes(mediasPhotographer);
+
+/**---------- totalLikes ------- */
+
+let photographerLikes = mediasPhotographer.reduce((accumulator, mediasPhotographer) =>
+    accumulator + mediasPhotographer.likes, 0);
+const divtotalLikes = document.getElementById('priceandlikes');
+
+const likeAndPrice = `
+    <p id="totalLikes"> <span>${photographerLikes} <img id="liketotal" width="18px" height="18px" src="./assets/images/favoris.png" alt="aime"/></span> ${dataPhotographer[0].price}€/ jour</p> 
+    `
+divtotalLikes.innerHTML = likeAndPrice;
 
 //Template 
 const displayMedia = (medias) => {
     const divPhotographerMedia = document.querySelector('.photographer_section');
     const bioPhotographer = document.querySelector('.photograph-header');
     const picture = `../../assets/photographers/id/${dataPhotographer[0].portrait}`
+
     /**-----------HEADER---------- */
     const bio = `
         <div class="photographe_texte">
@@ -56,7 +67,8 @@ const displayMedia = (medias) => {
     /**--------------CARTS ------- */
     let mediaPhotographer = '';
 
-    medias.forEach(element => {
+    medias.forEach((element, index) => {
+        // console.log("index display media : ", index)
         let name = dataPhotographer[0].name;
         const mediaElement = element.image
             ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
@@ -67,7 +79,7 @@ const displayMedia = (medias) => {
                 ${mediaElement}
                 <div class="title-like">
                 <p class="title-like">${element.title} </p>
-                <span>${element.likes}</span>
+                <span id=${"like" + index}  > ${element.likes}</span>
                     <button class='btn-like'>
                     <img id="like" width="50px" height="50px" src="./assets/images/favoris.png" alt="aime"/>
                     </button>
@@ -77,9 +89,17 @@ const displayMedia = (medias) => {
         mediaPhotographer += mediaCard;
     });
     divPhotographerMedia.innerHTML = mediaPhotographer;
+
 }
 displayMedia(mediasPhotographer);
+
 
 //Modal 
 const contact = document.querySelector('.contact_button');
 contact.addEventListener('click', () => displayModal());
+
+//Likes
+displayTotalLikes(mediasPhotographer);
+
+//slides
+slides(mediasPhotographer)
