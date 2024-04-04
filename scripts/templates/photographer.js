@@ -20,10 +20,7 @@ const dataMedia = await apiMedia.getMedia();
 let mediasPhotographer = dataMedia.filter(function (element) {
     return element.photographerId == idUnique;
 });
-
-//Modal 
-const contact = document.querySelector('.contact_button');
-contact.addEventListener('click', () => displayModal());
+console.log(dataPhotographer)
 
 //Filtre 
 const filter = document.getElementById("filter_select");
@@ -82,3 +79,7 @@ const displayMedia = (medias) => {
     divPhotographerMedia.innerHTML = mediaPhotographer;
 }
 displayMedia(mediasPhotographer);
+
+//Modal 
+const contact = document.querySelector('.contact_button');
+contact.addEventListener('click', () => displayModal());
