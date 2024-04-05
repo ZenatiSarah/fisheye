@@ -24,13 +24,21 @@ const previous = () =>{
 */
 
 const slides = (medias) => {
-    //console.log(medias)
-    let image = medias.map((element) => {
+    let currentIndex = 0;
+    const mediaProvider = Array.from(document.querySelectorAll('.mediasCard img, .mediasCard video'));
+    mediaProvider.forEach(media => {
+        media.addEventListener("click", () => {
+            /**
+             * id
+             * index
+             * 
+             */
+            console.log('ici');
+            const mediaId = medias.findIndex(media => media.id == mediaId);
 
-        return { image: element.image }
+        })
     });
+};
 
-    //console.log(image)
-}
 
 export default slides

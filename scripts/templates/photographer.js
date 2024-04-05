@@ -75,7 +75,7 @@ const displayMedia = (medias) => {
             : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
 
         const mediaCard = `
-            <article>
+            <article class="mediasCard">
                 ${mediaElement}
                 <div class="title-like">
                 <p class="title-like">${element.title} </p>
