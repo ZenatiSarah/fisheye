@@ -23,6 +23,10 @@ const previous = () =>{
 }
 */
 
+const popupImage = () => {
+
+}
+
 const slides = (medias) => {
     let currentIndex = 0;
     const mediaProvider = Array.from(document.querySelectorAll('.mediasCard img, .mediasCard video'));
@@ -33,9 +37,11 @@ const slides = (medias) => {
              * index
              * 
              */
-            console.log('ici');
-            const mediaId = medias.findIndex(media => media.id == mediaId);
-
+            console.log(medias);
+            const mediaId = medias.findIndex(function (element) {
+                return element.id == mediaId;
+            });
+            console.log(mediaId)
         })
     });
 };
