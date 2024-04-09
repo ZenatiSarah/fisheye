@@ -18,7 +18,7 @@ close.addEventListener('click', (event) => {
     closeModal();
 })
 
-function displayModal() {
+const displayModal = () => {
 
     console.log("Je suis là");
     modalBg.style.display = 'block'
@@ -37,7 +37,7 @@ function displayModal() {
     console.log(nom, prenom, email, message) // mettre sous forme d'objet
 }
 //Fermeture Modale
-function closeModal() {
+const closeModal = () => {
     console.log("close")
     modalBg.style.display = 'none'
 }
