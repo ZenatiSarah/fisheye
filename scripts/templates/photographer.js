@@ -2,7 +2,6 @@ import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
-import slides from "../utils/slide.js";
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
@@ -64,7 +63,7 @@ const displayMedia = (medias) => {
     `
     bioPhotographer.innerHTML = bio;
 
-    /**--------------CARTS ------- */
+    /**-------------- CARTS ------- */
     let mediaPhotographer = '';
 
     medias.forEach((element, index) => {
@@ -90,6 +89,9 @@ const displayMedia = (medias) => {
     });
     divPhotographerMedia.innerHTML = mediaPhotographer;
 
+    /**-------------- LightBox ------- */
+
+
 }
 displayMedia(mediasPhotographer);
 
@@ -101,5 +103,4 @@ contact.addEventListener('click', () => displayModal());
 //Likes
 displayTotalLikes(mediasPhotographer);
 
-//slides
-slides(mediasPhotographer)
+
