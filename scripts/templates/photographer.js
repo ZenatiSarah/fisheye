@@ -2,6 +2,7 @@ import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
+import Lightbox from '../utils/lightbox.js'
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
@@ -70,8 +71,8 @@ const displayMedia = (medias) => {
         // console.log("index display media : ", index)
         let name = dataPhotographer[0].name;
         const mediaElement = element.image
-            ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}"/>`
-            : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4"></video>`;
+            ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" class="medias"/>`
+            : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" class="medias"></video>`;
 
         const mediaCard = `
             <article class="mediasCard">
@@ -89,8 +90,6 @@ const displayMedia = (medias) => {
     });
     divPhotographerMedia.innerHTML = mediaPhotographer;
 
-    /**-------------- LightBox ------- */
-
 
 }
 displayMedia(mediasPhotographer);
@@ -104,3 +103,34 @@ contact.addEventListener('click', () => displayModal());
 displayTotalLikes(mediasPhotographer);
 
 
+// --------- Lightbox--------
+const lightbox = document.querySelector('.section_lightbox')
+const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
+console.log(imagesVideos)
+
+imagesVideos.forEach((item, index) => {
+
+
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const mediaElement = dataPhotographer[0];
+        console.log(mediasPhotographer[index])
+        console.log(mediasPhotographer[index].title + ".png")
+        const dom = `
+        <div class="lightbox">
+                 <button class="lightbox__close">Fermer</button>
+         <button class="lightbox__next">Suivant</button>
+         <button class="lightbox__prev">Précédent</button>
+         <div class="lightbox__container">
+         "${item}"
+         <img id="like" width="50px" height="50px" src="./assets/images/${mediasPhotographer[index].title}.png" alt="aime"/>
+         </div>
+        </div>
+
+         
+         `
+        lightbox.innerHTML = dom;
+
+    })
+})

@@ -1,21 +1,27 @@
 class Lightbox {
 
     static init() {
-        const imagesVideos = Array.from(document.querySelectorAll('.mediasCard img, .mediasCard video'))
-            .forEach(media => {
-                media.addEventListener('click', e => {
-                    console.log("tst")
-                    e.preventDefault();
-                    new Lightbox(e.currentTarget.getAttribute('src'))
-                })
+        const imagesVideos = document.querySelectorAll('.medias'); // attribut class de mes images et videos
+
+        console.log(imagesVideos)
+
+        imagesVideos.forEach(media => {
+
+            media.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log("ici")
+
+                new Lightbox(e.currentTarget.getAttribute('src'))
+
             })
+        })
     }
-
     constructor(url) {
-
+        const element = this.buildDOM(url);
+        document.body.appendChild(element)
     }
     buildDOM(url) {
-        const dom = createElement('div')
+        const dom = document.createElement('div')
         dom.classList.add('lightbox')
         dom.innerHTL = `
         <button class="lightbox__close">Fermer</button>
@@ -25,6 +31,7 @@ class Lightbox {
         <img src="${url}" alt="">
         </div>
         `
+        return dom
     }
 }
 
