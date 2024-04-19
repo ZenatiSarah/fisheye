@@ -106,14 +106,17 @@ displayTotalLikes(mediasPhotographer);
 
 // --------- Lightbox--------
 const lightbox = document.querySelector('.section_lightbox')
-const bg = document.querySelector('.fade')
-const closeClass = document.querySelector('.lightbox__close')
+//const bg = document.querySelector('.fade')
 
 const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
 
-const close = (e) => {
-    e.preventDefault()
-    bg.style.display = 'none'
+const close = () => {
+    const element = document.querySelector('.fade')
+
+    console.log("ici")
+
+    element.parentElement.remove('fade');
+
 }
 
 imagesVideos.forEach((item, index) => {
@@ -126,20 +129,24 @@ imagesVideos.forEach((item, index) => {
             ? `<img width="320" src="./assets/photographers/${dataPhotographer[0].name.split(" ")[0]}/${mediasPhotographer[index].image}" alt="image de ${mediasPhotographer[index].image}" class="medias"/>`
             : `<video width="320" height="240" controls> <source src="../../assets/photographers/${dataPhotographer[0].name.split(" ")[0]} / ${mediasPhotographer[index].video}" type="video / mp4" class="medias"></video>`;
 
-
         const dom = `
         <div class="lightbox fade">
                  <button class="lightbox__close">Fermer</button>
          <button class="lightbox__next">Suivant</button>
          <button class="lightbox__prev">Précédent</button>
          <div class="lightbox__container">
-         "${item}"
          ${mediaElement}
          </div>
         </div>
          `
         lightbox.innerHTML = dom;
-        closeClass.addEventListener('click', close())
+
+        const closeClass = document.querySelector('.lightbox__close')
+        closeClass.addEventListener('click', (e) => {
+
+            close(this)
+            return dom
+        })
 
     })
 })

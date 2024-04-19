@@ -58,3 +58,7 @@
     margin-right: 50px;
     min-height: 100vh;
 }
+
+.lightbox.fade{
+    opacity: 0 .3s;
+}
