@@ -1,17 +1,15 @@
-class Lightbox {
+export default class Lightbox {
 
     static init() {
-        const imagesVideos = document.querySelectorAll('.medias'); // attribut class de mes images et videos
+        const links = Array.from(document.querySelectorAll('.medias'))
+        console.log(links)
+        links.forEach(link => {
 
-        console.log(imagesVideos)
-
-        imagesVideos.forEach(media => {
-
-            media.addEventListener('click', (e) => {
+            link.addEventListener('click', (e) => {
                 e.preventDefault();
                 console.log("ici")
 
-                new Lightbox(e.currentTarget.getAttribute('src'))
+                new Lightbox(e.currentTarget.getAttribute('href')) // l'url de mon lien
 
             })
         })
@@ -34,5 +32,3 @@ class Lightbox {
         return dom
     }
 }
-
-export default Lightbox;

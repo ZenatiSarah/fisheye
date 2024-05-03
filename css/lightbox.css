@@ -6,7 +6,7 @@
     height: 100%;
     background-color: rgb(0, 0, 0, .9);
     z-index: 10;
-    overflow: auto; /*scroll l'image*/
+    /*overflow: auto; scroll l'image*/
 }
 .lightbox__next,
 .lightbox__prev{

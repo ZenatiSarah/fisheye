@@ -2,7 +2,7 @@ import { PhotographersApi, getMediaApi } from "../api/Api.js";
 import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
-import Lightbox from '../utils/lightbox.js'
+import Lightbox from "../utils/lightbox.js";
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
@@ -72,8 +72,8 @@ const displayMedia = (medias) => {
         let name = dataPhotographer[0].name;
 
         const mediaElement = element.image
-            ? `<img width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" class="medias"/>`
-            : `<video width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" class="medias"></video>`;
+            ? `<img class="medias" width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" />`
+            : `<video class="medias" width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" ></video>`;
 
         const mediaCard = `
             <article class="mediasCard">
@@ -103,16 +103,23 @@ contact.addEventListener('click', () => displayModal());
 //Likes
 displayTotalLikes(mediasPhotographer);
 
-
 // --------- Lightbox--------
+
+const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
+console.log(imagesVideos)
+const lightbox = new Lightbox(imagesVideos)
+imagesVideos.forEach(item => {
+    item.addEventListener('click', () => {
+
+    })
+})
+/*
 const lightbox = document.querySelector('.section_lightbox')
 //const bg = document.querySelector('.fade')
 
-const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
 
 const close = () => {
     const element = document.querySelector('.fade')
-
     console.log("ici")
 
     element.parentElement.remove('fade');
@@ -126,8 +133,8 @@ imagesVideos.forEach((item, index) => {
         e.preventDefault();
 
         const mediaElement = mediasPhotographer[index].image
-            ? `<img width="320" src="./assets/photographers/${dataPhotographer[0].name.split(" ")[0]}/${mediasPhotographer[index].image}" alt="image de ${mediasPhotographer[index].image}" class="medias"/>`
-            : `<video width="320" height="240" controls> <source src="../../assets/photographers/${dataPhotographer[0].name.split(" ")[0]} / ${mediasPhotographer[index].video}" type="video / mp4" class="medias"></video>`;
+            ? `<img src="./assets/photographers/${dataPhotographer[0].name.split(" ")[0]}/${mediasPhotographer[index].image}" alt="image de ${mediasPhotographer[index].image}" class="medias"/>`
+            : `<video height="240" controls> <source src="../../assets/photographers/${dataPhotographer[0].name.split(" ")[0]} / ${mediasPhotographer[index].video}" type="video / mp4" class="medias"></video>`;
 
         const dom = `
         <div class="lightbox fade">
@@ -143,10 +150,10 @@ imagesVideos.forEach((item, index) => {
 
         const closeClass = document.querySelector('.lightbox__close')
         closeClass.addEventListener('click', (e) => {
-
-            close(this)
+            e.preventDefault();
+            close()
             return dom
         })
 
     })
-})
+})*/
