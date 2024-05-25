@@ -51,11 +51,20 @@ export default class Lightbox {
 
         </div>
         `
+
         let boutonferme = dom.querySelector('.lightbox__close')
         boutonferme.addEventListener('click', () => {
             this.hideLightbox();
-        })
+        });
 
+        const prevSlide = dom.querySelector('.lightbox__prev');
+        prevSlide.addEventListener('click', () => {
+            this.previousSlide();
+        });
+        const nextSlide = dom.querySelector('.lightbox__next');
+        nextSlide.addEventListener('click', () => {
+            this.nextSlide();
+        })
         return dom;
     }
     hideLightbox() {
