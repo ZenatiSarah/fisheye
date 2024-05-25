@@ -60,7 +60,7 @@ const displayMedia = (medias) => {
         <button class="contact_button" >
             Contactez-moi
         </button>
-        <img src="${picture}" alt="portrait du photographe" 
+        <img src="${picture}" alt="portrait du photographe" />
     `
     bioPhotographer.innerHTML = bio;
 
@@ -72,8 +72,8 @@ const displayMedia = (medias) => {
         let name = dataPhotographer[0].name;
 
         const mediaElement = element.image
-            ? `<img class="medias" width="320" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" />`
-            : `<video class="medias" width="320" height="240" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" ></video>`;
+            ? `<img class="medias" width="320" data-index="${index}" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" />`
+            : `<video class="medias" width="320" height="240" data-index="${index}" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" ></video>`;
 
         const mediaCard = `
             <article class="mediasCard">
@@ -105,25 +105,22 @@ displayTotalLikes(mediasPhotographer);
 
 // --------- Lightbox--------
 
-const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
-console.log(imagesVideos)
-const lightbox = new Lightbox(imagesVideos)
-imagesVideos.forEach(item => {
-    item.addEventListener('click', () => {
 
-    })
-})
+const lightbox = new Lightbox(mediasPhotographer, dataPhotographer)
+
+
 /*
+Lightbox.init(mediasPhotographer, dataPhotographer);
+const imagesVideos = Array.from(document.querySelectorAll('.medias')); // attribut class de mes images et videos
 const lightbox = document.querySelector('.section_lightbox')
 //const bg = document.querySelector('.fade')
 
 
 const close = () => {
     const element = document.querySelector('.fade')
-    console.log("ici")
 
-    element.parentElement.remove('fade');
-
+    //element.parentElement.remove('fade');
+    element.style.display = 'none';
 }
 
 imagesVideos.forEach((item, index) => {
@@ -156,4 +153,6 @@ imagesVideos.forEach((item, index) => {
         })
 
     })
-})*/
+});
+
+*/

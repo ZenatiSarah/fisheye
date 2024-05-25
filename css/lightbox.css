@@ -1,8 +1,9 @@
-.lightbox{
+.section_lightbox{
     position : fixed;
     top: 0;
     left:0;
     width: 100%;
+    display: none;
     height: 100%;
     background-color: rgb(0, 0, 0, .9);
     z-index: 10;
@@ -61,4 +62,7 @@
 
 .lightbox.fade{
     opacity: 0 .3s;
+}
+.visible {
+    display: block;
 }
