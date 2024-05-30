@@ -16,22 +16,27 @@ export default class Lightbox {
                 let url = medias[index].image
                     ? `<img src="./assets/photographers/${datas[0].name.split(" ")[0]}/${medias[index].image}" alt="image de ${medias[index].image}" class="medias"/>`
                     : `<video height="240" controls> <source src="../../assets/photographers/${datas[0].name.split(" ")[0]} / ${medias[index].video}" type="video / mp4" class="medias"></video>`;
-                //this.showLightbox(index)
+                this.showIndex(index)
                 let lightboxContainer = document.querySelector('.lightbox__container');
                 lightboxContainer.innerHTML = url
+                console.log(url)
+                console.log("indx", index)
                 console.log(lightboxContainer)
                 this.divLightbox.classList.add('visible');
-
+                const nextSlide = document.querySelector('.lightbox__next');
+                nextSlide.addEventListener('click', () => {
+                    this.showIndex(index); //index is not defined
+                })
             })
         })
 
     }
-    /*
-        showLightbox(indexImage) {
-            console.log(indexImage)
-            console.log(this.medias[indexImage])
-            //this.showImage()
-        }*/
+
+    showIndex(indexImage) {
+        console.log(indexImage)
+        let nextIndex = indexImage++;
+        console.log(nextIndex)
+    }
 
     buildDOM() {
         const dom = document.querySelector('.section_lightbox');
@@ -40,10 +45,7 @@ export default class Lightbox {
         <button class="lightbox__close">Fermer</button>
         <button class="lightbox__next">Suivant</button>
         <button class="lightbox__prev">Précédent</button>
-        <div class="lightbox__container">
-
-        </div>
-        `
+        <div class="lightbox__container"></div> `
 
         let boutonferme = dom.querySelector('.lightbox__close')
         boutonferme.addEventListener('click', () => {
@@ -54,10 +56,10 @@ export default class Lightbox {
         prevSlide.addEventListener('click', () => {
             this.previousSlide();
         });
-        const nextSlide = dom.querySelector('.lightbox__next');
+        /*const nextSlide = dom.querySelector('.lightbox__next');
         nextSlide.addEventListener('click', () => {
-            this.nextSlide();
-        })
+            this.showIndex(index); //index is not defined
+        })*/
         return dom;
     }
     hideLightbox() {

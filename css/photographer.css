@@ -33,7 +33,7 @@ main{
 #background_modal{
     z-index: 5;
     top: 5px;
-    left: 25rem;
+    left: 33rem;
     position: absolute;
     border-radius: 5px;
     background-color: #DB8876;
@@ -44,6 +44,9 @@ main{
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+}
+textarea{
+    width: 100%;
 }
 
 #background_modal header {
