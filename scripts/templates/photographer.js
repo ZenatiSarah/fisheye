@@ -3,6 +3,7 @@ import { displayModal } from '../utils/modal.js' // lancement de la modale //
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
 import Lightbox from "../utils/lightbox.js";
+import MediaFactory from '../utils/mediaFactory.js'
 
 //Récupération de l'id de ma page
 const url_id = window.location.search;
@@ -68,13 +69,9 @@ const displayMedia = (medias) => {
     let mediaPhotographer = '';
 
     medias.forEach((element, index) => {
-        // console.log("index display media : ", index)
         let name = dataPhotographer[0].name;
 
-        const mediaElement = element.image
-            ? `<img class="medias" width="320" data-index="${index}" src="./assets/photographers/${name.split(" ")[0]}/${element.image}" alt="image de ${element.image}" />`
-            : `<video class="medias" width="320" height="240" data-index="${index}" controls> <source src="./assets/photographers/${name.split(" ")[0]}/${element.video}" type="video/mp4" ></video>`;
-
+        const mediaElement = MediaFactory.getMediaTag(element, name.split(" ")[0], index);
         const mediaCard = `
             <article class="mediasCard">
                 ${mediaElement}
