@@ -23,10 +23,8 @@ const displayModal = () => {
     console.log("Je suis là");
     modalBg.style.display = 'block'
     modalBg.setAttribute('aria-hidden', 'false')
-    //contact.style.display = 'none'
     main.setAttribute('aria-hidden', 'true')
     body.classList.add('no-scroll')
-    //firstName.focus()
     modal.setAttribute('tabindex', '0')
 
     let nom = document.getElementById('name').value
@@ -34,23 +32,13 @@ const displayModal = () => {
     let email = document.getElementById('email').value
     let message = document.getElementById('message').value
     form.checkValidity()
-    console.log(nom, prenom, email, message) // mettre sous forme d'objet
+    console.log(nom, prenom, email, message)
 }
+
 //Fermeture Modale
 const closeModal = () => {
     console.log("close")
     modalBg.style.display = 'none'
 }
-
-
-
-//Regex
-
-
-// --- Nom --
-// --- Prénom --
-// --- Mail --
-// --- Message --
-// --- envoi --
 
 export { displayModal }

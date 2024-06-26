@@ -4,10 +4,6 @@ class Api {
   }
 
   async get() {
-    // return await fetch(this._url)
-    //   .then((res) => res.json())
-    //   .then((res) => res.data)
-    //   .catch((err) => console.log("error API", err));
     try {
       const res = await fetch(this._url);
       const data = await res.json();
