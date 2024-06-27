@@ -2,10 +2,12 @@ const displayTotalLikes = (medias) => {
 
     const allBtnLike = document.querySelectorAll('.btn-like');
 
+
     let totalLikes = medias.reduce((accumulator, medias) =>
         accumulator + medias.likes, 0);
 
     allBtnLike.forEach((btnLike, index) => {
+
         let etatInital = false;
         let itemLike = medias[index].likes;
 
