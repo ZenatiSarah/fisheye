@@ -1,5 +1,5 @@
 import { PhotographersApi, getMediaApi } from "../api/Api.js";
-import { displayModal } from '../utils/modal.js' // lancement de la modale //
+import { displayModal } from '../utils/modal.js'
 import filterMedias from '../utils/filtre.js'
 import displayTotalLikes from "../utils/like.js";
 import Lightbox from "../utils/lightbox.js";
@@ -22,7 +22,6 @@ const dataMedia = await apiMedia.getMedia();
 let mediasPhotographer = dataMedia.filter(function (element) {
     return element.photographerId == idUnique;
 });
-console.log(dataPhotographer)
 
 //Filtre 
 const filter = document.getElementById("filter_select");
@@ -41,7 +40,9 @@ let photographerLikes = mediasPhotographer.reduce((accumulator, mediasPhotograph
 const divtotalLikes = document.getElementById('priceandlikes');
 
 const likeAndPrice = `
-    <p id="totalLikes"> <span>${photographerLikes} <img id="liketotal" width="18px" height="18px" src="./assets/images/favoris.png" alt="aime"/></span> ${dataPhotographer[0].price}€/ jour</p> 
+    <p id="totalLikes"> 
+    <span id="likes">${photographerLikes}</span>
+    <img id="liketotal" width="18px" height="18px" src="./assets/images/favoris.png" alt="aime"/> ${dataPhotographer[0].price}€/ jour</p> 
     `
 divtotalLikes.innerHTML = likeAndPrice;
 

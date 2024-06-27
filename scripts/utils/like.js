@@ -16,13 +16,13 @@ const displayTotalLikes = (medias) => {
                 itemLike++
                 document.getElementById("like" + index).innerHTML = itemLike;
                 totalLikes++
-                document.getElementById("totalLikes").innerHTML = totalLikes;
+                document.getElementById("likes").innerHTML = totalLikes;
 
             } else {
                 itemLike--
                 document.getElementById("like" + index).innerHTML = itemLike;
                 totalLikes--
-                document.getElementById("totalLikes").innerHTML = totalLikes;
+                document.getElementById("likes").innerHTML = totalLikes;
 
             }
 

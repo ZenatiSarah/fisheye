@@ -111,12 +111,12 @@ form input {
     bottom: 0;
     right: 0;
     position: fixed;
-    width: 11rem;
+    width: 9rem;
     padding: 0.4rem;
     background: #DB8876;
     border-radius: 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 article p{
     text-align: center;
