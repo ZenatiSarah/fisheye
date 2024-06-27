@@ -19,8 +19,6 @@ close.addEventListener('click', (event) => {
 })
 
 const displayModal = () => {
-
-    console.log("Je suis là");
     modalBg.style.display = 'block'
     modalBg.setAttribute('aria-hidden', 'false')
     main.setAttribute('aria-hidden', 'true')
@@ -32,7 +30,6 @@ const displayModal = () => {
     let email = document.getElementById('email').value
     let message = document.getElementById('message').value
     form.checkValidity()
-    console.log(nom, prenom, email, message)
 }
 
 //Fermeture Modale
