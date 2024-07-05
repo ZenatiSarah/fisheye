@@ -32,7 +32,6 @@ class getMediaApi extends Api {
 
   async getMedia() {
     const data = await this.get();
-    console.log(data)
     return data.media;
   }
 }

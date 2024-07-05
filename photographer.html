@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
@@ -15,13 +15,13 @@
   </head>
   <body class="bodyPhotographer">
     <header>
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="LOGO "/></a>
       
     </header>
     <main id="mainPhotographer">
       <div class="photograph-header"></div>
       <div class="filter">
-        <label>Trier par </label>
+        <label for="filter_select">Trier par </label>
         <select  name="filter" id="filter_select">
           <option value="par défaut" id="choix">Veuillez choisir...</option>
           <option value="popularite" id="popularite">Popularité</option>
@@ -45,7 +45,7 @@
       <div class="modal">
         <header>
           <h2>Contactez-moi </h2>
-          <img src="assets/icons/close.svg"  class="close closeModal" id="closeModal"/>
+          <img src="assets/icons/close.svg"  class="close closeModal" id="closeModal" alt="close"/>
         </header>
 
         <form id="form">
@@ -62,7 +62,7 @@
             <input type="text" id="email" aria-label="email" required/>
           </div>
           <div>
-            <label>Votre message</label>
+            <label for="message">Votre message</label>
             <textarea id="message" name="message" rows="10" cols="55" aria-label="Votre message" required></textarea>
           </div>
           <input value="Envoyer"  type="submit" class="contact_button">

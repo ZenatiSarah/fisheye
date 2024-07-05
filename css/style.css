@@ -107,3 +107,7 @@ select{
     color: white;
     border-radius: 0.2rem;
 }
+
+article .portrait:focus{
+    border: 1px solid black;
+}

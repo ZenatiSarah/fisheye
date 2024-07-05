@@ -6,8 +6,10 @@ import Lightbox from "../utils/lightbox.js";
 import MediaFactory from '../utils/mediaFactory.js'
 
 //Récupération de l'id de ma page
-const url_id = window.location.search;
-const idUnique = url_id.slice(1);
+/*const url_id = window.location.search;
+const idUnique = url_id.slice(1);*/
+const urlParams = new URLSearchParams(window.location.search);
+const idUnique = urlParams.get("id");
 
 //Mon photographe
 const api = new PhotographersApi('../data/photographers.json');
@@ -27,9 +29,10 @@ let mediasPhotographer = dataMedia.filter(function (element) {
 const filter = document.getElementById("filter_select");
 filter.addEventListener("click", function (event) {
     event.preventDefault();
-
     filterMedias(filter.value, mediasPhotographer);
     displayMedia(mediasPhotographer);
+    const lightbox = new Lightbox(mediasPhotographer, dataPhotographer)
+
 });
 
 
@@ -84,6 +87,7 @@ const displayMedia = (medias) => {
                     </button>
                 </div>
             </article>
+        
         `
         mediaPhotographer += mediaCard;
     });

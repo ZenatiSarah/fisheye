@@ -34,7 +34,6 @@ const displayModal = () => {
 
 //Fermeture Modale
 const closeModal = () => {
-    console.log("close")
     modalBg.style.display = 'none'
 }
 

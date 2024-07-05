@@ -3,15 +3,14 @@ export default class Lightbox {
         this.medias = medias;
         this.datas = datas
         this.photographerName = datas[0].name.split(" ")[0];
-        this.addListener(medias, datas)
-        console.log('dom construit !')
+        this.addListener(medias, datas);
         this.divLightbox = document.querySelector('.section_lightbox');
         this.index = 1;
         this.buildDOM()
     }
 
     addListener() {
-        const links = Array.from(document.querySelectorAll('.medias'))
+        const links = Array.from(document.querySelectorAll('.selectableCard'))
         links.forEach((link) => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -19,6 +18,14 @@ export default class Lightbox {
                 this.showImage();
                 this.divLightbox.classList.add('visible');
 
+            })
+            link.addEventListener('keydown', (e) => {
+                e.preventDefault();
+                if (e.code === "Enter") {
+                    this.index = e.target.firstChild.dataset.index;
+                    this.showImage();
+                    this.divLightbox.classList.add('visible');
+                }
             })
         })
 
@@ -56,18 +63,15 @@ export default class Lightbox {
         });
         document.addEventListener('keydown', (e) => {
             if (e.code === "ArrowRight") {
-                console.log(e.code)
                 this.goNextSlide();
             }
         });
         document.addEventListener('keydown', (e) => {
             if (e.code === "ArrowLeft") {
-                console.log(e.code)
                 this.goPreviousSlide();
             }
         });
         document.addEventListener('keydown', (e) => {
-            console.log(e.code)
             if (e.code === "Escape") {
                 this.hideLightbox();
             }
